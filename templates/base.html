@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% load staticfiles %}
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" href="{% static "css/bootstrap-material-design.min.css" %}">
+	<link rel="stylesheet" href="{% static "css/ripples.min.css" %}">
+	<link rel="stylesheet" href="{% static "css/styles.css" %}">
+	{% block styles %}{% endblock %}
+	<title>IVR Soporte Azurian</title>
+</head>
+<body>
+	<div class="page-header">
+		<div class="navbar navbar-inverse shadow-z-1 navbar-fixed-top">
+		    <div class="navbar-header">
+		        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-warning-collapse">
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+		        </button>
+		        <a class="navbar-brand" style="margin-left:20px;" href="/">
+		        <b>Azurian</b> IVR Soporte</a>
+		    </div>
+		    <div class="navbar-collapse collapse navbar-warning-collapse">
+		    	<ul class="nav navbar-nav">
+					<li><a href="/">Principal</a></li>
+				</ul>
+		        <ul class="nav navbar-nav navbar-right" style="margin-right:20px;">
+		            <li class="dropdown">
+		                <a href="bootstrap-elements.html" data-target="#" class="dropdown-toggle" data-toggle="dropdown">{{ user.email | upper }} <b class="glyphicon glyphicon-option-vertical"></b></a>
+		                <ul class="dropdown-menu">
+				        	<li><a href="/profile/">Perfil</a></li>
+				        	{% if user.is_superuser %}
+				        		<li><a href="/admin/" target="_blank">Admin</a></li>
+				        	{% endif %}
+				        	<li><a href="/logout/">Salir</a></li>
+		                </ul>
+		            </li>
+		        </ul>
+		    </div>
+		</div>
+	</div>
+
+	<div class="container-fluid main">{% block content %}{% endblock %}</div>
+	
+	<script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<script src="https://www.google.com/jsapi"></script>
+	<script src="{% static "js/moment.min.js" %}"></script>
+	<script src="{% static "js/ripples.min.js" %}"></script>
+	<script src="{% static "js/material.min.js" %}"></script>
+	<script>$.material.init();</script>
+	{% block javascript %}{% endblock %}
+</body>
+</html>

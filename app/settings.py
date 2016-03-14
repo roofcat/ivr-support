@@ -46,7 +46,9 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     # apps
+    'authentications',
     'calls',
+    'panel',
 ]
 
 
@@ -150,6 +152,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
-STATIC_ROOT = 'static'
-#STATICFILES_DIRS = (BASE_DIR.child('static'),)
+#STATIC_ROOT = 'static'
+STATICFILES_DIRS = (BASE_DIR.child('static'),)
 STATIC_URL = '/static/'

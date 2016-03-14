@@ -9,6 +9,7 @@ from rest_framework import routers
 from rest_framework.authtoken.views import obtain_auth_token
 
 
+from authentications.views import log_in, log_out, to_home, ProfileTemplateView
 from calls.views import CallInputIVRView
 
 
@@ -20,6 +21,13 @@ urlpatterns = [
 	url(r'^api/', include(router.urls)),
 	url(r'^api-token/', obtain_auth_token),
 	url(r'^api/call-input/', CallInputIVRView.as_view()),
+
+	url(r'^panel/', include('panel.urls', namespace='panel')),
+	# autenticaciones
+	url(r'^$', to_home, name='home'),
+	url(r'^login/', log_in, name='login'),
+	url(r'^logout/', log_out, name='logout'),
+	url(r'^profile/', ProfileTemplateView.as_view(), name='profile'),
 	# ruta admin
     url(r'^admin/', admin.site.urls),
 ]
