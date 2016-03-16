@@ -8,9 +8,9 @@ from .models import Call
 
 
 class CallAdmin(admin.ModelAdmin):
-	list_display = ()
-	list_filter = ()
-	search_fields = ()
+	list_display = ('begin_call', 'key', 'call_answered',)
+	list_filter = ('begin_call', 'key', 'call_answered',)
+	search_fields = ('begin_call', 'key', 'call_answered',)
 
 
 admin.site.register(Call, CallAdmin)
