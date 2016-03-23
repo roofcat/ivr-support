@@ -7,8 +7,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/icon?family=Material+Icons">
 	<link rel="stylesheet" href="{% static "css/bootstrap-material-design.min.css" %}">
 	<link rel="stylesheet" href="{% static "css/ripples.min.css" %}">
+	<link rel="stylesheet" href="{% static "/static/css/jquery.datetimepicker.css" %}">
+	<link rel="stylesheet" href="{% static "/static/css/dataTables.bootstrap.min.css" %}">
 	<link rel="stylesheet" href="{% static "css/styles.css" %}">
 	{% block styles %}{% endblock %}
 	<title>IVR Soporte Azurian</title>
@@ -27,7 +30,8 @@
 		    </div>
 		    <div class="navbar-collapse collapse navbar-warning-collapse">
 		    	<ul class="nav navbar-nav">
-					<li><a href="/">Principal</a></li>
+					<li><a href="/">General</a></li>
+					<li><a href="search/">Buscar</a></li>
 				</ul>
 		        <ul class="nav navbar-nav navbar-right" style="margin-right:20px;">
 		            <li class="dropdown">
@@ -53,7 +57,10 @@
 	<script src="{% static "js/moment.min.js" %}"></script>
 	<script src="{% static "js/ripples.min.js" %}"></script>
 	<script src="{% static "js/material.min.js" %}"></script>
-	<script>$.material.init();</script>
+	<script src="{% static "js/jquery.datetimepicker.js" %}"></script>
+	<script src="{% static "js/jquery.dataTables.min.js" %}"></script>
+	<script src="{% static "js/dataTables.bootstrap.min.js" %}"></script>
+	<script src="{% static "js/app.min.js" %}"></script>
 	{% block javascript %}{% endblock %}
 </body>
 </html>

@@ -13,3 +13,9 @@ class HomePanelView(LoginRequiredMixin, TemplateView):
 
 	def get(self, request, *args, **kwargs):
 		return render(request, self.template_name)
+
+class SearchPanelView(LoginRequiredMixin, TemplateView):
+	template_name = 'panel/search.html'
+
+	def get(self, request, *args, **kwargs):
+		return render(request, self.template_name)
