@@ -14,8 +14,8 @@ class CallInputIVRSerializer(ModelSerializer):
     class Meta:
         model = Call
         fields = (
-            'begin_call', 'call_answered', 'collection', 'dial_intent_answered',
-            'dial_intent_begin', 'dial_intent_called', 'dial_intent_caller',
-            'dial_intent_end', 'end_dial', 'hc', 'ivr_sel', 'key', 'last_state', 
-            'name', 'origin', 'routing', 'session_file', 'sp', 'timestamp',
+            'begin_call', 'origin', 'call_answered', 'last_state', 'ivr_sel', 
+            'dial_intent_begin', 'dial_intent_caller', 'dial_intent_called', 
+            'dial_intent_end', 'dial_intent_answered', 'session_file', 
+            'hc', 'end_dial', 'timestamp'
         )
