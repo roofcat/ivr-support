@@ -18,9 +18,10 @@ class HomePanelView(LoginRequiredMixin, TemplateView):
 
 class DynamicSearchPanelView(LoginRequiredMixin, TemplateView):
 
-    def get(self, request, *args, **kwargs):
+    def get(self, request, date_from, date_to, *args, **kwargs):
         parameters = dict()
-
+    	parameters['date_from'] = int(date_from, base=10)
+    	parameters['date_to'] = int(date_to, base=10)
         # parametros de jquery datatables
         echo = request.GET['sEcho']
         display_start = request.GET['iDisplayStart']
@@ -28,6 +29,8 @@ class DynamicSearchPanelView(LoginRequiredMixin, TemplateView):
         parameters['display_start'] = int(display_start, base=10)
         parameters['display_length'] = int(display_length, base=10)
 
+        # query
+        calls = Call.get_dynamic_calls(**parameters)
         # response
         data = {
             'sEcho': echo,

@@ -2,7 +2,7 @@
 
 var baseUrl = document.location.href;
 // urls busquedas
-var queryUrl = 'search/';
+var queryUrl = '/search/';
 
 // urls exportar reportes
 var exportUrl = 'reports/export/';
@@ -19,7 +19,7 @@ var exportLink = '';
 $( document ).ready( function () {
 	baseUrl = baseUrl.split('/');
 	delete baseUrl[4];
-	delete baseUrl[3];
+	//delete baseUrl[3];
 	baseUrl = baseUrl.join('/')
 	baseUrl = baseUrl.substring( 0, baseUrl.length - 1 );
 
@@ -59,13 +59,25 @@ function setDefaultDates () {
 };
 
 $( '#run_search' ).on( 'click', function () {
+
+	var date_from = $( '#date_from' ).val();
+	var date_to = $( '#date_to' ).val();
+
+	date_from = date_to_timestamp( date_from );
+	date_to = date_to_timestamp( date_to );
+
+	var link = baseUrl + queryUrl + date_from + '/' + date_to + '/';
+
+	console.log( link );
+
+	drawJTables( link );
 });
 
 $( '#showMenu' ).on( 'click', function () {
 	$( '#menuModal' ).modal( 'show', true );
 });
 
-function drawJTables( url ) {
+function drawJTables( urlSource ) {
 	var table = $( '#tableCall' ).dataTable({
 		"ajaxSource": urlSource,
 		"destroy": true,

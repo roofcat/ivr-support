@@ -11,6 +11,9 @@ from django.db import models
 from django.core import serializers
 
 
+from utils import timestamp_to_date
+
+
 class Call(models.Model):
     begin_call = models.DateTimeField(
         null=True, blank=True, verbose_name='Inicio de llamada')
@@ -47,6 +50,8 @@ class Call(models.Model):
 
     @classmethod
     def get_dynamic_calls(self, date_from, date_to, display_start, display_length):
+        date_from = timestamp_to_date(date_from)
+        date_to = timestamp_to_date(date_to)
         params = dict()
         params['timestamp__range'] = (date_from, date_to)
 
@@ -64,3 +69,12 @@ class Call(models.Model):
         calls = serializers.serialize('json', calls)
         calls = json.loads(calls)
         data = []
+        for c in calls:
+            call = c['fields']
+            call['pk'] = c['pk']
+            data.append(call)
+        return {
+            'query_total': query_total,
+            'query_length': query_length,
+            'data': data,
+        }
