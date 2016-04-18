@@ -6,6 +6,7 @@ app/*py[cod]
 authentications/*py[cod]
 authentications/migrations/*py[cod]
 calls/*py[cod]
+calls/audio/*
 calls/migrations/*py[cod]
 panel/*py[cod]
 panel/migrations/*py[cod]
