@@ -4,6 +4,117 @@
 
 {% block content %}
 
-General
+<table class="table table-hover table-striped table-condensed table-responsive" id="tableCall" style="font-size:10px;">
+	<tr>
+		<th>Fecha</th>
+		<th>Inicio llamada</th>
+		<th>Nº que llama</th>
+		<th>Contestó IVR</th>
+		<th>Opción IVR</th>
+		<th>Tecla que presionó</th>
+		<th>Hora inicio</th>
+		<th>Nº que llama</th>
+		<th>Nº donde se transfiere</th>
+		<th>Fecha término</th>
+		<th>Transferencia contestada</th>
+		<th>Audio</th>
+		<th>COD Término llamada</th>
+		<th>Termino de llamada</th>
+	</tr>
+</table>
 
+<!-- BOTON MATERIAL MENU -->
+<div class="search-btn" align="right">
+	<button class="btn btn-fab btn-raised btn-danger mdi-action-search" id="showMenu" 
+	type="button" rel="popover" data-animation="true" data-trigger="hover" 
+	data-html="true" data-placement="left" data-container="body" data-toggle="popover" 
+	data-content="<p>Click para abrir panel de filtro por fechas de período.</p>">
+		<div class="ripple-wrapper"></div>
+	</button>
+</div>
+
+<!-- MODAL MENU BUSCAR -->
+<div class="modal" id="menuModal" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" id="closeMenuModal" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">Buscar</h4>
+            </div>
+            <div class="modal-body">
+            	<br>
+            	<div class="row">
+            		<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+		            	<div class="form-horizontal">
+		                	<div class="form-group form-group-material-indigo has-feedback">
+								<label class="control-label">Desde</label>
+								<input class="form-control datePicker" type="text" id="date_from">
+								<span class="mdi-action-today form-control-feedback" aria-hidden="true"></span>
+							</div>
+		            	</div>
+            		</div>
+            		<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+		            	<div class="form-horizontal">
+							<div class="form-group form-group-material-indigo has-feedback">
+								<label class="control-label">Hasta</label>
+								<input class="form-control datePicker" type="text" id="date_to">
+								<span class="mdi-action-today form-control-feedback" aria-hidden="true"></span>
+							</div>
+		            	</div>
+            		</div>
+            	</div>
+            	<!-- FIN DIV BODY -->
+            </div>
+
+            <div class="modal-footer">
+            	<div class="form-group" align="right" style="margin-right:20px;">
+            		<button class="btn btn-flat btn-material-indigo" data-dismiss="modal">Cancelar</button>
+					<button class="btn btn-material-indigo" id="run_search">Buscar</button>
+				</div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- MODAL CARGANDO -->
+<div class="modal" id="loadingModal" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" id="closeLoadingModal" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">Buscando...</h4>
+            </div>
+            <div class="modal-body">
+                <p>por favor espere unos segundos</p>
+            </div>
+            <div class="modal-footer"></div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL NOTIFICACIONES -->
+<div class="modal" id="notificationModal" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" id="closeNotificationModal" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title" id="notificationTitle"></h4>
+            </div>
+            <div class="modal-body">
+                <p id="notificationBody"></p>
+            </div>
+            <div class="modal-footer">
+            	<div class="form-group" align="right" style="margin-right:20px;">
+					<button class="btn btn-flat btn-material-indigo" data-dismiss="modal">Cerrar</button>
+				</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block javascript %}
+	<script src="{% static "js/panel/index.js" %}"></script>
 {% endblock %}

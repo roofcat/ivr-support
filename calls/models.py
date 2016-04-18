@@ -4,9 +4,11 @@
 from __future__ import unicode_literals
 from datetime import datetime
 import calendar
+import json
 
 
 from django.db import models
+from django.core import serializers
 
 
 class Call(models.Model):
@@ -40,5 +42,25 @@ class Call(models.Model):
     timestamp = models.DateTimeField(
         null=True, blank=True, verbose_name='Fecha del registro')
 
-    def __unicode__():
-        return "{0} - {1} - {2}".format(timestamp, origin, call_answered)
+    def __unicode__(self):
+        return "{0} - {1} - {2}".format(self.timestamp, self.origin, self.call_answered)
+
+    @classmethod
+    def get_dynamic_calls(self, date_from, date_to, display_start, display_length):
+        params = dict()
+        params['timestamp__range'] = (date_from, date_to)
+
+        # ejecución de la query
+        calls = Call.objects.filter(**params).order_by('-timestamp')
+        query_total = calls.count()
+        if display_start is 0:
+            calls = calls[display_start:display_length]
+        else:
+            calls = calls[display_start:display_length + display_start]
+        if calls:
+            query_length = calls.count()
+        else:
+            query_length = 0
+        calls = serializers.serialize('json', calls)
+        calls = json.loads(calls)
+        data = []

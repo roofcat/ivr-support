@@ -2,20 +2,37 @@
 
 
 from django.shortcuts import render
+from django.http import JsonResponse
 from django.views.generic import TemplateView
 
-
 from authentications.views import LoginRequiredMixin
+from calls.models import Call
 
 
 class HomePanelView(LoginRequiredMixin, TemplateView):
-	template_name = 'panel/index.html'
+    template_name = 'panel/index.html'
 
-	def get(self, request, *args, **kwargs):
-		return render(request, self.template_name)
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name)
 
-class SearchPanelView(LoginRequiredMixin, TemplateView):
-	template_name = 'panel/search.html'
 
-	def get(self, request, *args, **kwargs):
-		return render(request, self.template_name)
+class DynamicSearchPanelView(LoginRequiredMixin, TemplateView):
+
+    def get(self, request, *args, **kwargs):
+        parameters = dict()
+
+        # parametros de jquery datatables
+        echo = request.GET['sEcho']
+        display_start = request.GET['iDisplayStart']
+        display_length = request.GET['iDisplayLength']
+        parameters['display_start'] = int(display_start, base=10)
+        parameters['display_length'] = int(display_length, base=10)
+
+        # response
+        data = {
+            'sEcho': echo,
+            'data': calls['data'],
+            'iTotalDisplayRecords': calls['query_total'],
+            'iTotalRecords': calls['query_total'],
+        }
+        return JsonResponse(data, safe=False)
