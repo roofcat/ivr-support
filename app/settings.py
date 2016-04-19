@@ -154,10 +154,10 @@ LOGGING = {
     'disable_existing_loggers': False,
     'formatters': {
         'verbose': {
-            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+            'format': '[%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d] %(message)s \n'
         },
         'simple': {
-            'format': '%(levelname)s %(message)s'
+            'format': '[%(levelname)s] %(message)s'
         },
     },
     'handlers': {
@@ -174,5 +174,10 @@ LOGGING = {
             'level': 'DEBUG',
             'propagate': True,
         },
+        'django.requests': {
+            'handlers': ['file'],
+            'level': 'INFO',
+            'propagate': True,
+        }
     },
 }
