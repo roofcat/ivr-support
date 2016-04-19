@@ -21,7 +21,7 @@ SECRET_KEY = '*1yc(@+!!bcfqsy#zw(9csn13%o*+43=a1-hc4ynqvtk6_tx8o'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*',]
 
 
 # Application definition
@@ -160,37 +160,29 @@ LOGGING = {
             'format': '%(levelname)s %(message)s'
         },
     },
-    'filters': {
-        'require_debug_true': {
-            '()': 'django.utils.log.RequireDebugTrue',
-        },
-    },
     'handlers': {
         'file': {
-            'level': 'DEBUG',
+            'level': 'INFO',
             'class': 'logging.FileHandler',
             'filename': 'debug.log',
+            'formatter': 'verbose',
         },
-        'console': {
-            'level': 'INFO',
-            'filters': ['require_debug_true'],
-            'class': 'logging.StreamHandler',
-            'formatter': 'simple'
-        },
-        'mail_admins': {
-            'level': 'ERROR',
-            'class': 'django.utils.log.AdminEmailHandler',
-        }
     },
     'loggers': {
         'django': {
-            'handlers': ['console'],
+            'handlers': ['file'],
+            'level': 'INFO',
             'propagate': True,
         },
-        'django.request': {
-            'handlers': ['mail_admins'],
-            'level': 'ERROR',
-            'propagate': False,
+        'restapi': {
+            'handlers': ['file'],
+            'level': 'INFO',
+            'propagate': True,
         },
-    }
+        'api': {
+            'handlers': ['file'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+    },
 }
