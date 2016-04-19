@@ -176,5 +176,3 @@ LOGGING = {
         },
     },
 }
-
-print LOGGING['loggers']['django']
