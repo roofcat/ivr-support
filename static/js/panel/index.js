@@ -175,14 +175,18 @@ function drawJTables( urlSource ) {
 				'data': 'session_file',
 				'title': 'Audio',
 				'render': function ( data, type, row, meta ) {
+					console.log( data );
+					return data;
+					/*
 					if ( data ) {
 						var html = '<div style="font-size:11px;">';
 						html += '<a href="' + attachUrl + data + '" title="Ver archivo adjunto" target="_blank"><span class="mdi-editor-attach-file"></span></a>';
 						html += '</div>';
 						return html;
 					} else {
-						return " ";
+						return "";
 					};
+					*/
 				},
 			},
 			{
