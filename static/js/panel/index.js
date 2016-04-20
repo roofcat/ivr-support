@@ -136,7 +136,7 @@ function drawJTables( urlSource ) {
 					if ( data ) {
 						html = '<div align="center"><span class="glyphicon glyphicon-ok"></span></div>';
 					} else {
-						'<div align="center"><span class="glyphicon glyphicon-remove"></span></div>';
+						html = '<div align="center"><span class="glyphicon glyphicon-remove"></span></div>';
 					}
 					return html;
 				},
@@ -179,7 +179,7 @@ function drawJTables( urlSource ) {
 					if ( data ) {
 						html = '<div align="center"><span class="glyphicon glyphicon-ok"></span></div>';
 					} else {
-						'<div align="center"><span class="glyphicon glyphicon-remove"></span></div>';
+						html = '<div align="center"><span class="glyphicon glyphicon-remove"></span></div>';
 					}
 					return html;
 				},
