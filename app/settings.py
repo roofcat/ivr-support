@@ -147,6 +147,10 @@ USE_TZ = True
 STATICFILES_DIRS = (BASE_DIR.child('static'),)
 STATIC_URL = '/static/'
 
+# archivos de audio
+MEDIA_URL = "/audio/"
+MEDIA_ROOT = BASE_DIR.child('audio')
+
 
 # Manejo de logs de la aplicación
 LOGGING = {
