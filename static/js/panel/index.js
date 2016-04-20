@@ -134,9 +134,9 @@ function drawJTables( urlSource ) {
 				'render': function ( data, type, row, meta ) {
 					var html = '';
 					if ( data ) {
-						html = '<span class="glyphicon glyphicon-ok"></span>'
+						html = '<div align="center"><span class="glyphicon glyphicon-ok"></span></div>';
 					} else {
-						'<span class="glyphicon glyphicon-remove"></span>'
+						'<div align="center"><span class="glyphicon glyphicon-remove"></span></div>';
 					}
 					return html;
 				},
@@ -177,9 +177,9 @@ function drawJTables( urlSource ) {
 				'render': function ( data, type, row, meta ) {
 					var html = '';
 					if ( data ) {
-						html = '<span class="glyphicon glyphicon-ok"></span>'
+						html = '<div align="center"><span class="glyphicon glyphicon-ok"></span></div>';
 					} else {
-						'<span class="glyphicon glyphicon-remove"></span>'
+						'<div align="center"><span class="glyphicon glyphicon-remove"></span></div>';
 					}
 					return html;
 				},
