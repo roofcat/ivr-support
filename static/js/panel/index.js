@@ -117,7 +117,16 @@ function drawJTables( urlSource ) {
 			},
 			{
 				'data': 'call_answered',
-				'title': 'contestó IVR',
+				'title': 'Contestó IVR',
+				'render': function ( data, type, row, meta ) {
+					var html = '';
+					if ( data ) {
+						html = '<span class="glyphicon glyphicon-ok"></span>'
+					} else {
+						'<span class="glyphicon glyphicon-remove"></span>'
+					}
+					return html;
+				},
 			},
 			{
 				'data': 'last_state',
@@ -152,6 +161,15 @@ function drawJTables( urlSource ) {
 			{
 				'data': 'dial_intent_answered',
 				'title': 'Transferencia contestada',
+				'render': function ( data, type, row, meta ) {
+					var html = '';
+					if ( data ) {
+						html = '<span class="glyphicon glyphicon-ok"></span>'
+					} else {
+						'<span class="glyphicon glyphicon-remove"></span>'
+					}
+					return html;
+				},
 			},
 			{
 				'data': 'session_file',
