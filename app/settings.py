@@ -174,5 +174,15 @@ LOGGING = {
             'level': 'DEBUG',
             'propagate': True,
         },
+        'PanelApp': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'CallsApp': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
     },
 }

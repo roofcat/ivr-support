@@ -5,6 +5,7 @@ from __future__ import unicode_literals
 from datetime import datetime
 import calendar
 import json
+import logging
 
 
 from django.db import models
@@ -12,6 +13,9 @@ from django.core import serializers
 
 
 from utils import timestamp_to_date
+
+
+logger = logging.getLogger("CallsApp")
 
 
 class Call(models.Model):
@@ -58,6 +62,7 @@ class Call(models.Model):
         # ejecución de la query
         calls = Call.objects.filter(**params).order_by('-timestamp')
         query_total = calls.count()
+        logger.info("Total query count: {0}".format(query_total))
         if display_start is 0:
             calls = calls[display_start:display_length]
         else:

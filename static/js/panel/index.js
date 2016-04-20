@@ -60,6 +60,9 @@ function setDefaultDates () {
 
 $( '#run_search' ).on( 'click', function () {
 
+	$( '#closeMenuModal' ).click();
+	$( '#loadingModal' ).modal( 'show', true );
+
 	var date_from = $( '#date_from' ).val();
 	var date_to = $( '#date_to' ).val();
 
@@ -71,6 +74,8 @@ $( '#run_search' ).on( 'click', function () {
 	console.log( link );
 
 	drawJTables( link );
+
+	$( '#closeLoadingModal' ).click();
 });
 
 $( '#showMenu' ).on( 'click', function () {
@@ -179,6 +184,6 @@ function drawJTables( urlSource ) {
             "zeroRecords": "No se encontraron registros.",
          },
 	});
-	table.removeClass('display');
-	table.addClass('table table-hover table-striped table-condensed table-responsive');
+	table.removeClass( 'display' );
+	table.addClass( 'table table-hover table-striped table-condensed table-responsive' );
 };
