@@ -159,9 +159,7 @@ function drawJTables( urlSource ) {
 				'render': function ( data, type, row, meta ) {
 					if ( data ) {
 						var html = '<div style="font-size:11px;">';
-						html += '<a href="' + attachUrl + data; 
-						html += '" title="Ver archivo adjunto" target="_blank">';
-						html += '<span class="mdi-editor-attach-file"></span></a>';
+						html += '<a href="' + attachUrl + data + '" title="Ver archivo adjunto" target="_blank"><span class="mdi-editor-attach-file"></span></a>';
 						html += '</div>';
 						return html;
 					} else {

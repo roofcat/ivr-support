@@ -73,6 +73,7 @@ class Call(models.Model):
             query_length = 0
         calls = serializers.serialize('json', calls)
         calls = json.loads(calls)
+        logger.info(calls)
         data = []
         for c in calls:
             call = c['fields']
