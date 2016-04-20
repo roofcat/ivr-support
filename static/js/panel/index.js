@@ -108,6 +108,7 @@ function drawJTables( urlSource ) {
 					} else {
 						return "";
 					};
+				},
 			},
 			{
 				'data': 'timestamp',
