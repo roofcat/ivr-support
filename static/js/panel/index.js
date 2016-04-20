@@ -99,71 +99,83 @@ function drawJTables( urlSource ) {
 		"columns": [
 			{
 				'data': 'timestamp',
-				'title': 'timestamp',
+				'title': 'Fecha',
 				'render': function ( data, type, row, meta ) {
 					return ( !data ) ? "" : moment( data ).format( 'DD-MM-YYYY H:mm:ss' );
 				},
 			},
 			{
 				'data': 'begin_call',
-				'title': 'begin_call',
+				'title': 'Inicio llamada',
 				'render': function ( data, type, row, meta ) {
 					return ( !data ) ? "" : moment( data ).format( 'DD-MM-YYYY H:mm:ss' );
 				},
 			},
 			{
 				'data': 'origin',
-				'title': 'origin',
+				'title': 'Nº que llama',
 			},
 			{
 				'data': 'call_answered',
-				'title': 'call_answered',
+				'title': 'contestó IVR',
 			},
 			{
 				'data': 'last_state',
-				'title': 'last_state',
+				'title': 'Opción IVR',
 			},
 			{
 				'data': 'ivr_sel',
-				'title': 'ivr_sel',
+				'title': 'Tecla seleccionada',
 			},
 			{
 				'data': 'dial_intent_begin',
-				'title': 'dial_intent_begin',
+				'title': 'Fecha inicio',
 				'render': function ( data, type, row, meta ) {
 					return ( !data ) ? "" : moment( data ).format( 'DD-MM-YYYY H:mm:ss' );
 				},
 			},
 			{
 				'data': 'dial_intent_caller',
-				'title': 'dial_intent_caller',
+				'title': 'Nº que llama',
 			},
 			{
 				'data': 'dial_intent_called',
-				'title': 'dial_intent_called',
+				'title': 'Nº donde se transfiere',
 			},
 			{
 				'data': 'dial_intent_end',
-				'title': 'dial_intent_end',
+				'title': 'Fecha término',
 				'render': function ( data, type, row, meta ) {
 					return ( !data ) ? "" : moment( data ).format( 'DD-MM-YYYY H:mm:ss' );
 				},
 			},
 			{
 				'data': 'dial_intent_answered',
-				'title': 'dial_intent_answered',
+				'title': 'Transferencia contestada',
 			},
 			{
 				'data': 'session_file',
-				'title': 'session_file',
+				'title': 'Audio',
+				'render': function ( data, type, row, meta ) {
+					if ( data ) {
+						var html = '<div style="font-size:11px;">';
+						html += '<a href="' + attachUrl + data; 
+						html += '" title="Ver archivo adjunto" target="_blank">';
+						html += '<span class="mdi-editor-attach-file"></span></a>';
+						html += '</div>';
+						return html;
+					} else {
+						return " ";
+					};
+				},
 			},
 			{
 				'data': 'hc',
-				'title': 'hc',
+				'title': 'COD Término llamada',
 			},
 			{
 				'data': 'end_dial',
-				'title': 'end_dial',
+				'title': 'Termino de llamada',
 				'render': function ( data, type, row, meta ) {
 					return ( !data ) ? "" : moment( data ).format( 'DD-MM-YYYY H:mm:ss' );
 				},
