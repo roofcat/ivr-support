@@ -96,7 +96,19 @@ function drawJTables( urlSource ) {
 		"scrollY": "450px",
 		"searching": false,
 		"serverSide": true,
-		"columns": [
+		"columns": [				
+			{
+				'data': 'pk',
+				'title': 'Detalle',
+				'render': function ( data, type, row, meta ) {
+					if ( data != null ) {
+						var html = '';
+						html += '<span style="font-size:16px;color:#2196f3;align:center;cursor:pointer;" title="Click para ver más detalle." class="glyphicon glyphicon-info-sign" id="spanDetail" data-pk="' + data + '"></span>';
+						return html;
+					} else {
+						return "";
+					};
+			},
 			{
 				'data': 'timestamp',
 				'title': 'Fecha',
