@@ -5,9 +5,12 @@ import pytz
 tz = pytz.timezone('America/Santiago')
 
 
-def timestamp_to_date(x):
+def timestamp_to_date(x, zone=False):
 	x = to_unix_timestamp(x)
-	return datetime.fromtimestamp(x, tz=tz)
+	if zone:
+		return datetime.fromtimestamp(x, tz=tz)
+	else:
+		return datetime.fromtimestamp(x)
 
 
 def to_unix_timestamp(x):
