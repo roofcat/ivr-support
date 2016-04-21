@@ -111,6 +111,20 @@ function drawJTables( urlSource ) {
 				},
 			},
 			{
+				'data': 'session_file',
+				'title': 'Audio',
+				'render': function ( data, type, row, meta ) {
+					if ( data ) {
+						var html = '<div style="font-size:11px;">';
+						html += '<a href="/media/' + data + '" title="Ir al audio" target="_blank"><span class="glyphicon glyphicon-headphones"></span></a>';
+						html += '</div>';
+						return html;
+					} else {
+						return "";
+					};
+				},
+			},
+			{
 				'data': 'timestamp',
 				'title': 'Fecha',
 				'render': function ( data, type, row, meta ) {
@@ -178,20 +192,6 @@ function drawJTables( urlSource ) {
 						html = '<div align="center"><span class="glyphicon glyphicon-remove"></span></div>';
 					}
 					return html;
-				},
-			},
-			{
-				'data': 'session_file',
-				'title': 'Audio',
-				'render': function ( data, type, row, meta ) {
-					if ( data ) {
-						var html = '<div style="font-size:11px;">';
-						html += '<a href="/media/' + data + '" title="Ir al audio" target="_blank"><span class="glyphicon glyphicon-headphones"></span></a>';
-						html += '</div>';
-						return html;
-					} else {
-						return "";
-					};
 				},
 			},
 			{
