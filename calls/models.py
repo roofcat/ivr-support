@@ -39,7 +39,7 @@ class Call(models.Model):
         null=True, blank=True, verbose_name='Término de la llamada de transferencia')
     dial_intent_answered = models.BooleanField(
         default=False, verbose_name='La transferencia fue contestada')
-    session_file = models.FileField(upload_to='media/%Y/%m/%d{0}'.format(
+    session_file = models.FileField(upload_to='audio/%Y/%m/%d{0}'.format(
         calendar.timegm(datetime.utcnow().utctimetuple())),
         null=True, verbose_name='Archivo de audio')
     hc = models.CharField(max_length=150, null=True, blank=True,
