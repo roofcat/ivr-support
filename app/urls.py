@@ -4,6 +4,7 @@
 from django.conf import settings
 from django.conf.urls import include, url
 from django.contrib import admin
+from django.views.static import serve
 
 
 from rest_framework import routers
@@ -31,10 +32,6 @@ urlpatterns = [
 	url(r'^profile/', ProfileTemplateView.as_view(), name='profile'),
 	# ruta admin
     url(r'^admin/', admin.site.urls),
-    url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {
-    	'document_root': settings.MEDIA_ROOT,
-	}),
-	url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {
-    	'document_root': settings.STATIC_ROOT,
-	}),
+    url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT,}),
+	url(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT,}),
 ]
