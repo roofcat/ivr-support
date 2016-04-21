@@ -23,8 +23,6 @@ $( document ).ready( function () {
 	baseUrl = baseUrl.join('/')
 	baseUrl = baseUrl.substring( 0, baseUrl.length - 1 );
 
-	console.log( baseUrl );
-
 	$( '.datePicker' ).datetimepicker ({
 		'dayOfWeekStart': 1,
 		'lang': 'es',
@@ -70,8 +68,6 @@ $( '#run_search' ).on( 'click', function () {
 	date_to = date_to_timestamp( date_to );
 
 	var link = baseUrl + queryUrl + date_from + '/' + date_to + '/';
-
-	console.log( link );
 
 	drawJTables( link );
 
