@@ -33,3 +33,7 @@ function timestamp_to_date ( date ) {
 function date_to_timestamp ( date ) {
     return moment( date, 'DD/MM/YYYY' ).unix();
 };
+
+function date_to_format ( date ) {
+    return moment( date ).format( 'DD-MM-YYYY H:mm:ss a' );
+};

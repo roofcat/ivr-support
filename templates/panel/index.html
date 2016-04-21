@@ -24,11 +24,12 @@
 
 <!-- BOTON MATERIAL MENU -->
 <div class="search-btn" align="right">
-	<button class="btn btn-fab btn-raised btn-danger mdi-action-search" id="showMenu" 
+	<button class="btn btn-fab btn-raised btn-danger" id="showMenu" 
 	type="button" rel="popover" data-animation="true" data-trigger="hover" 
 	data-html="true" data-placement="left" data-container="body" data-toggle="popover" 
 	data-content="<p>Click para abrir panel de filtro por fechas de período.</p>">
 		<div class="ripple-wrapper"></div>
+		<i class="material-icons">search</i>
 	</button>
 </div>
 
@@ -105,7 +106,7 @@
             </div>
             <div class="modal-footer">
             	<div class="form-group" align="right" style="margin-right:20px;">
-					<button class="btn btn-flat btn-material-indigo" data-dismiss="modal">Cerrar</button>
+					<button class="btn btn-flat btn-info" data-dismiss="modal">Cerrar</button>
 				</div>
             </div>
         </div>
@@ -115,5 +116,5 @@
 {% endblock %}
 
 {% block javascript %}
-	<script src="{% static "js/panel/index.js" %}"></script>
+	<script src="{% static "js/panel/index.min.js" %}"></script>
 {% endblock %}

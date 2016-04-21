@@ -5,8 +5,10 @@ import logging
 import json
 
 
-from django.shortcuts import render
+from django.forms.models import model_to_dict
 from django.http import JsonResponse
+from django.shortcuts import get_object_or_404
+from django.shortcuts import render
 from django.views.generic import TemplateView
 
 from authentications.views import LoginRequiredMixin
@@ -23,6 +25,21 @@ class HomePanelView(LoginRequiredMixin, TemplateView):
     	logger.info("Entrando a HomePanelView")
     	logger.info("Usuario {0}".format(request.user))
         return render(request, self.template_name)
+
+
+class CallDetailView(LoginRequiredMixin, TemplateView):
+
+	def get(self, request, *args, **kwargs):
+		try:
+			pk = request.GET['pk']
+			if pk:
+				pk = int(pk, base=10)
+				call = get_object_or_404(Call, pk=pk)
+				call = model_to_dict(call)
+				call['session_file'] = '/media/' + call['session_file'].name
+				return JsonResponse(call)
+		except Exception, e:
+			logger.error(e)
 
 
 class DynamicSearchPanelView(LoginRequiredMixin, TemplateView):
