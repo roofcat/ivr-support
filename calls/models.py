@@ -13,6 +13,7 @@ from django.core import serializers
 
 
 from utils import timestamp_to_date
+from utils import create_tablib
 
 
 logger = logging.getLogger("CallsApp")
@@ -83,4 +84,23 @@ class Call(models.Model):
             'query_total': query_total,
             'query_length': query_length,
             'data': data,
+        }
+
+    @classmethod
+    def get_dynamic_calls_async(self, date_from, date_to):
+        date_from = timestamp_to_date(date_from)
+        date_to = timestamp_to_date(date_to)
+        params = dict()
+        params['timestamp__range'] = (date_from, date_to)
+        
+        # ejecucion de la query
+        data = Call.objects.filter(**params).order_by('-timestamp')
+
+        # preparacion del reporte
+        report = create_tablib(data)
+
+        # creación de objeto
+        mail = {
+            'name': 'reporte.xlsx',
+            'report': report.xlsx,
         }

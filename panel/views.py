@@ -42,6 +42,15 @@ class CallDetailView(LoginRequiredMixin, TemplateView):
 			logger.error(e)
 
 
+class PanelReportExport(LoginRequiredMixin, TemplateView):
+
+	def get(self, request, date_from, date_to, *args, **kwargs):
+		logger.info("Entrando a PanelReportExport")
+		parameters = dict()
+		parameters['date_from'] = int(date_from, base=10)
+		parameters['date_to'] = int(date_to, base=10)
+
+
 class DynamicSearchPanelView(LoginRequiredMixin, TemplateView):
 
     def get(self, request, date_from, date_to, *args, **kwargs):
