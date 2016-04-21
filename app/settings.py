@@ -19,16 +19,16 @@ BASE_DIR = Path(__file__).ancestor(2)
 SECRET_KEY = '*1yc(@+!!bcfqsy#zw(9csn13%o*+43=a1-hc4ynqvtk6_tx8o'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['*',]
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
-    'django.contrib.auth',
+    'django.contrib.auth',    
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -142,9 +142,10 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
-
-#STATIC_ROOT = 'static'
-STATICFILES_DIRS = (BASE_DIR.child('static'),)
+if DEBUG:
+    STATICFILES_DIRS = (BASE_DIR.child('static'),)
+else:
+    STATIC_ROOT = BASE_DIR.child('static')
 STATIC_URL = '/static/'
 
 # archivos de audio
