@@ -142,12 +142,8 @@ function drawJTables( urlSource ) {
 				},
 			},
 			{
-				'data': 'last_state',
-				'title': 'Opción IVR',
-			},
-			{
 				'data': 'ivr_sel',
-				'title': 'Tecla seleccionada',
+				'title': 'Nº Anexo',
 			},
 			{
 				'data': 'dial_intent_begin',
@@ -199,12 +195,8 @@ function drawJTables( urlSource ) {
 				},
 			},
 			{
-				'data': 'hc',
-				'title': 'COD Término llamada',
-			},
-			{
 				'data': 'end_dial',
-				'title': 'Termino de llamada',
+				'title': 'Término de llamada',
 				'render': function ( data, type, row, meta ) {
 					return ( !data ) ? "" : moment( data ).format( 'DD-MM-YYYY H:mm:ss' );
 				},
