@@ -12,10 +12,10 @@ from .generics import timestamp_to_date
 def create_tablib(data):
 	my_tab = tablib.Dataset(title="Registro Llamadas")
 	my_tab.headers = (
-		'Fecha registro', 'Inicio llamada', 'Nº que llama', 'Respondió IVR', 
-		'Opción IVR Seleccionada', 'Anexo', 'Fecha inicio de llamada transferencia',
-		'Nº que llama', 'Nº a donde se transfiere llamada', 'Término de llamada de transferencia',
-		'Transferencia contestada', 'Código de término de llamada'
+		'Fecha registro', 'Inicio llamada', 'N que llama', 'Respondio IVR', 
+		'Opcion IVR Seleccionada', 'Anexo', 'Fecha inicio de llamada transferencia',
+		'N que llama', 'N a donde se transfiere llamada', 'Termino de llamada de transferencia',
+		'Transferencia contestada', 'Codigo de termino de llamada'
 	)
 
 	if data:
