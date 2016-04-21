@@ -190,7 +190,7 @@ function drawJTables( urlSource ) {
 				'render': function ( data, type, row, meta ) {
 					if ( data ) {
 						var html = '<div style="font-size:11px;">';
-						html += '<a href="' + data + '" title="Ir al audio" target="_blank"><span class="glyphicon glyphicon-headphones"></span></a>';
+						html += '<a href="/media/' + data + '" title="Ir al audio" target="_blank"><span class="glyphicon glyphicon-headphones"></span></a>';
 						html += '</div>';
 						return html;
 					} else {
