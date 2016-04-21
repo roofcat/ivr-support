@@ -3,7 +3,7 @@
 *.py[cod]
 *py[cod]
 app/*py[cod]
-audio/*
+media/*
 authentications/*py[cod]
 authentications/migrations/*py[cod]
 calls/*py[cod]
