@@ -243,7 +243,6 @@ function getRowDetail ( pk ) {
 		},
 	})
 	.done( function ( data ) {
-		console.log( data );
 		drawCallDetailModal( data ); 
 	})
 	.fail( function ( jqXHR, textStatus, errorThrown ) {
@@ -256,38 +255,40 @@ function drawCallDetailModal ( data ) {
 	var title = 'Detalle de llamada';
 	var html = '<div style="font-size: 12px;"><br>';
 
-	html += '<label>Fecha registro</label> ' + date_to_format( data.timestamp ) + ' <br>';
-	html += '<label>Inicio de llamada</label> ' + date_to_format( data.begin_call ) + ' <br>';
-	html += '<label>Nº que llama</label> ' + data.origin + ' <br>';
-	html += '<label>Llamada respondida</label> ';
+	html += '<label>Fecha registro:</label> ' + date_to_format( data.timestamp ) + ' <br>';
+	html += '<label>Inicio de llamada:</label> ' + date_to_format( data.begin_call ) + ' <br>';
+	html += '<label>Nº que llama:</label> ' + data.origin + ' - ';
+	html += '<label>Nº Anexo:</label> ' + data.ivr_sel + ' <br>';
+	html += '<label>Llamada respondida:</label> ';
 	if ( data.call_answered === true ) {
 		html += '<span class="glyphicon glyphicon-ok"></span>';
 	} else {
 		html+= '<span class="glyphicon glyphicon-remove"></span>';
 	};
-	html += ' <br>';
-	html += '<label>Último estado IVR</label> ' + data.last_state + ' <br>';
-	html += '<label>Nº Anexo</label> ' + data.ivr_sel + ' <br>';
-	html += '<label>Fecha de inicio de llamada de transferencia</label> ' + date_to_format( data.dial_intent_begin ) + ' <br>';
-	html += '<label>Número que llama</label> ' + data.dial_intent_caller + ' <br>';
-	html += '<label>Número a donde se transfiere la llamada</label> ' + data.dial_intent_called + ' <br>';
-	html += '<label>Término de la llamada de transferencia</label> ' + data.dial_intent_end + ' <br>';
-	html += '<label>Transferencia contestada</label> ';
+	html += ' - ';
+	html += '<label>Último estado IVR:</label> ' + data.last_state + ' <br>';
+	html += '<label>Fecha de inicio de llamada de transferencia:</label> ' + date_to_format( data.dial_intent_begin ) + ' <br>';
+	html += '<label>Número que llama:</label> ' + data.dial_intent_caller + ' <br>';
+	html += '<label>Número a donde se transfiere la llamada:</label> ' + data.dial_intent_called + ' <br>';
+	html += '<label>Término de la llamada de transferencia:</label> ' + data.dial_intent_end + ' <br>';
+	html += '<label>Transferencia contestada:</label> ';
 	if ( data.dial_intent_answered === true ) {
 		html += '<span class="glyphicon glyphicon-ok"></span>';
 	} else {
 		html+= '<span class="glyphicon glyphicon-remove"></span>';
 	};
 	html += ' <br>';
-	html += '<label>Archivo de audio</label> ';
+	html += '<label>Archivo de audio:</label> ';
 	if ( data.session_file ) {
-		html += '<audio src="' + data.session_file + '"></audio>';
+		html += '<audio controls>';
+		html += '<source src="' + data.session_file + '">';
+		html += '</audio>';
 	} else {
 		html += 'Sin archivo de audio.';
 	};
 	html += ' <br>';
-	html += '<label>Código de término de llamada</label> ' + data.hc + ' <br>';
-	html += '<label>Fecha término de llamada</label> ' + date_to_format( data.end_dial ) + ' <br>';
+	html += '<label>Código de término de llamada:</label> ' + data.hc + ' <br>';
+	html += '<label>Fecha término de llamada:</label> ' + date_to_format( data.end_dial ) + ' <br>';
 	html += ' ';
 	html += '</div>';
 
