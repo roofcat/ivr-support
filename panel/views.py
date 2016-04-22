@@ -13,6 +13,7 @@ from django.views.generic import TemplateView
 
 from authentications.views import LoginRequiredMixin
 from calls.models import Call
+from utils import create_tablib
 
 
 logger = logging.getLogger("PanelApp")
@@ -22,42 +23,50 @@ class HomePanelView(LoginRequiredMixin, TemplateView):
     template_name = 'panel/index.html'
 
     def get(self, request, *args, **kwargs):
-    	logger.info("Entrando a HomePanelView")
-    	logger.info("Usuario {0}".format(request.user))
+        logger.info("Entrando a HomePanelView")
+        logger.info("Usuario {0}".format(request.user))
         return render(request, self.template_name)
 
 
 class CallDetailView(LoginRequiredMixin, TemplateView):
 
-	def get(self, request, *args, **kwargs):
-		try:
-			pk = request.GET['pk']
-			if pk:
-				pk = int(pk, base=10)
-				call = get_object_or_404(Call, pk=pk)
-				call = model_to_dict(call)
-				call['session_file'] = '/media/' + call['session_file'].name
-				return JsonResponse(call)
-		except Exception, e:
-			logger.error(e)
+    def get(self, request, *args, **kwargs):
+        try:
+            pk = request.GET['pk']
+            if pk:
+                pk = int(pk, base=10)
+                call = get_object_or_404(Call, pk=pk)
+                call = model_to_dict(call)
+                call['session_file'] = '/media/' + call['session_file'].name
+                return JsonResponse(call)
+        except Exception, e:
+            logger.error(e)
 
 
 class PanelReportExport(LoginRequiredMixin, TemplateView):
 
-	def get(self, request, date_from, date_to, *args, **kwargs):
-		logger.info("Entrando a PanelReportExport")
-		parameters = dict()
-		parameters['date_from'] = int(date_from, base=10)
-		parameters['date_to'] = int(date_to, base=10)
+    def get(self, request, date_from, date_to, *args, **kwargs):
+        logger.info("Entrando a PanelReportExport")
+        parameters = dict()
+        parameters['date_from'] = int(date_from, base=10)
+        parameters['date_to'] = int(date_to, base=10)
+        # preparacion del reporte
+        report = create_tablib(data)
+
+        # creación de objeto
+        mail = {
+            'name': 'reporte.xlsx',
+            'report': report.xlsx,
+        }
 
 
 class DynamicSearchPanelView(LoginRequiredMixin, TemplateView):
 
     def get(self, request, date_from, date_to, *args, **kwargs):
-    	logger.info("Entrando a DynamicSearchPanelView")
+        logger.info("Entrando a DynamicSearchPanelView")
         parameters = dict()
-    	parameters['date_from'] = int(date_from, base=10)
-    	parameters['date_to'] = int(date_to, base=10)
+        parameters['date_from'] = int(date_from, base=10)
+        parameters['date_to'] = int(date_to, base=10)
         # parametros de jquery datatables
         echo = request.GET['sEcho']
         display_start = request.GET['iDisplayStart']

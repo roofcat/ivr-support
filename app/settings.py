@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     # apps
     'authentications',
     'calls',
+    'configurations',
     'panel',
 ]
 

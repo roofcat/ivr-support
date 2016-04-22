@@ -8,6 +8,8 @@ authentications/*py[cod]
 authentications/migrations/*py[cod]
 calls/*py[cod]
 calls/migrations/*py[cod]
+configurations/*py[cod]
+configurations/migrations/*py[cod]
 debug.log
 panel/*py[cod]
 panel/migrations/*py[cod]

@@ -13,7 +13,6 @@ from django.core import serializers
 
 
 from utils import timestamp_to_date
-from utils import create_tablib
 
 
 logger = logging.getLogger("CallsApp")
@@ -96,11 +95,7 @@ class Call(models.Model):
         # ejecucion de la query
         data = Call.objects.filter(**params).order_by('-timestamp')
 
-        # preparacion del reporte
-        report = create_tablib(data)
-
-        # creación de objeto
-        mail = {
-            'name': 'reporte.xlsx',
-            'report': report.xlsx,
-        }
+        if data:
+            return data
+        else:
+            return None
