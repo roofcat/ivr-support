@@ -6,14 +6,16 @@ import json
 
 
 from django.forms.models import model_to_dict
+from django.http import HttpResponse
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render
 from django.views.generic import TemplateView
 
+
 from authentications.views import LoginRequiredMixin
 from calls.models import Call
-from utils import create_tablib
+from utils import tasks
 
 
 logger = logging.getLogger("PanelApp")
@@ -25,6 +27,7 @@ class HomePanelView(LoginRequiredMixin, TemplateView):
     def get(self, request, *args, **kwargs):
         logger.info("Entrando a HomePanelView")
         logger.info("Usuario {0}".format(request.user))
+        print request.user.id
         return render(request, self.template_name)
 
 
@@ -50,14 +53,9 @@ class PanelReportExport(LoginRequiredMixin, TemplateView):
         parameters = dict()
         parameters['date_from'] = int(date_from, base=10)
         parameters['date_to'] = int(date_to, base=10)
-        # preparacion del reporte
-        report = create_tablib(data)
-
-        # creación de objeto
-        mail = {
-            'name': 'reporte.xlsx',
-            'report': report.xlsx,
-        }
+        parameters['user'] = request.user.id
+        tasks.send_report_by_sendgrid(**parameters)
+        return HttpResponse()
 
 
 class DynamicSearchPanelView(LoginRequiredMixin, TemplateView):

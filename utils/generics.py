@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+
+
 from datetime import datetime
 import pytz
 
@@ -20,3 +23,7 @@ def to_unix_timestamp(x):
 		return x
 	else:
 		return None
+
+
+def date_to_format(x):
+	return datetime.strftime(x, '%Y-%m-%d %H:%M:%S')

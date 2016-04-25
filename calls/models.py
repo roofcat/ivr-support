@@ -94,6 +94,7 @@ class Call(models.Model):
         
         # ejecucion de la query
         data = Call.objects.filter(**params).order_by('-timestamp')
+        logger.info(data.count())
 
         if data:
             return data

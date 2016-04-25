@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+
+
 import logging
 
 
@@ -28,10 +31,14 @@ class SGEmailClient(object):
 
 	def send_report_email(self, email, report):
 		template_config = TemplateReport.objects.all()[:1].get()
-		user = get_object_or_404(User, pk=user)
+		user = get_object_or_404(User, pk=email)
+		logger.info(user)
 		html = unicode(template_config.html_template).format(
 			user_name=user.first_name,
 		)
+		self.message.add_to(user.email)
+		self.message.add_to_name(user.first_name)
+		self.message.set_html(html)
 
 		if report['report']:
 			self.message.add_attachment_stream(
