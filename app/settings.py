@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 
-import os
 import sys
 from unipath import Path
 
@@ -19,7 +18,7 @@ BASE_DIR = Path(__file__).ancestor(2)
 SECRET_KEY = '*1yc(@+!!bcfqsy#zw(9csn13%o*+43=a1-hc4ynqvtk6_tx8o'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
