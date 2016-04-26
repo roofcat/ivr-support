@@ -16,7 +16,7 @@ from utils import timestamp_to_date
 
 
 logger = logging.getLogger("CallsApp")
-day_delta = timedelta(days=1)
+time_delta = timedelta(hours=23.999999999)
 
 
 class Call(models.Model):
@@ -56,12 +56,13 @@ class Call(models.Model):
     @classmethod
     def get_dynamic_calls(self, date_from, date_to, display_start, display_length):
         date_from = timestamp_to_date(date_from)
-        date_to = timestamp_to_date(date_to) + day_delta
+        date_to = timestamp_to_date(date_to) + time_delta
         params = dict()
         params['timestamp__range'] = (date_from, date_to)
 
         # ejecución de la query
         calls = Call.objects.filter(**params).order_by('-timestamp')
+        logger.info(calls.query)
         query_total = calls.count()
         logger.info("Total query count: {0}".format(query_total))
         if display_start is 0:
@@ -88,7 +89,7 @@ class Call(models.Model):
     @classmethod
     def get_dynamic_calls_async(self, date_from, date_to):
         date_from = timestamp_to_date(date_from)
-        date_to = timestamp_to_date(date_to) + day_delta
+        date_to = timestamp_to_date(date_to) + time_delta
         params = dict()
         params['timestamp__range'] = (date_from, date_to)
         
