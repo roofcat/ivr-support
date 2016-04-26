@@ -40,9 +40,3 @@ def send_report_by_sendgrid(user, date_from, date_to):
         mail.send_report_email(user, data)
     else:
         logger.info('no hay datos para crear excel')
-
-
-@app.task
-def test_hola_mundo():
-    logger.info("COLA DE hola mundo")
-    print "hola"

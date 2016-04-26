@@ -21,9 +21,8 @@ def create_tablib(data):
 		'Transferencia contestada', 'Código termino llamada', 'Fecha termino llamada'
 	)
 
-	if data:
+	if data is not None:
 		for row in data:
-			logger.info(row)
 			timestamp = date_to_format(row.timestamp)
 			begin_call = date_to_format(row.begin_call)
 			origin = unicode(row.origin)
@@ -50,6 +49,8 @@ def create_tablib(data):
 				dial_intent_answered, hc, end_dial
 			)
 			my_tab.append(data_row)
+		logger.info('Se generó el excel exitosamente')
 		return 	my_tab
 	else:
+		logger.info('No hay datos para generar excel')
 		return None
