@@ -27,7 +27,6 @@ class HomePanelView(LoginRequiredMixin, TemplateView):
     def get(self, request, *args, **kwargs):
         logger.info("Entrando a HomePanelView")
         logger.info("Usuario {0}".format(request.user))
-        print request.user.id
         return render(request, self.template_name)
 
 
