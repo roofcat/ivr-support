@@ -5,7 +5,7 @@ var baseUrl = document.location.href;
 var queryUrl = '/search/';
 
 // urls exportar reportes
-var exportUrl = 'reports/export/';
+var exportUrl = '/export/';
 
 // urls para modal detalle de email
 var callDetailUrl = 'call-detail/';
@@ -72,11 +72,45 @@ $( '#run_search' ).on( 'click', function () {
 	drawJTables( link );
 
 	$( '#closeLoadingModal' ).click();
+
+	exportLink = baseUrl + exportUrl + date_from + '/' + date_to + '/';
+
+	console.log( exportLink );
+
+	$( '#btnGenerateReport' ).show();
+
+});
+
+$( '#btnGenerateReport' ).on( 'click', function () {
+	var btn = $( this );
+	btn.attr( 'disabled', true );
+	sendUrlToReportTask( exportLink, btn );
+	var title = "Reporte llamadas";
+	var body = "Se ha iniciado el proceso para generar tu reporte Excel ";
+	body += "cuando este proceso finalice recibirás un email con el archivo ";
+	body += "adjunto, por favor espere unos minutos...";
+	notificationModal( title, body );
+
 });
 
 $( '#showMenu' ).on( 'click', function () {
 	$( '#menuModal' ).modal( 'show', true );
 });
+
+function sendUrlToReportTask ( link, btn ) {
+	$.ajax({
+		url: link,
+		type: 'GET',
+	})
+	.done(function( data ) {
+		btn.attr('disabled', false );
+		console.log( data );
+	})
+	.fail(function( jqXHR, textStatus, errorThrown ) {
+		btn.attr('disabled', false );
+		console.log( errorThrown );
+	});
+};
 
 function drawJTables( urlSource ) {
 	var table = $( '#tableCall' ).dataTable({
