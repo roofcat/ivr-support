@@ -16,6 +16,7 @@ var attachUrl = 'https://storage.googleapis.com';
 // link dinamico para las rutas de exportar
 var exportLink = '';
 
+
 $( document ).ready( function () {
 	baseUrl = baseUrl.split('/');
 	delete baseUrl[4];
@@ -44,7 +45,7 @@ $( '.datePicker' ).on( 'change', function () {
 	var date_to = $( '#date_to' ).val();
 
 	date_from = moment( date_from, 'DD/MM/YYYY' ).unix();
-	date_to = moment( date_to, 'DD/MM/YYYY' ).unix();
+	date_to = moment( date_to ).unix();
 
 	if ( date_from > date_to ) {
 		setDefaultDates();
