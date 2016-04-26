@@ -54,7 +54,10 @@ class PanelReportExport(LoginRequiredMixin, TemplateView):
         parameters['date_from'] = int(date_from, base=10)
         parameters['date_to'] = int(date_to, base=10)
         parameters['user'] = request.user.id
-        tasks.send_report_by_sendgrid(**parameters)
+        try:
+            tasks.send_report_by_sendgrid(**parameters)
+        except Exception, e:
+            logger.error(e)
         return HttpResponse()
 
 
