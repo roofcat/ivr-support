@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 
 
+import json
+import logging
+
+
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
@@ -9,6 +13,9 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect, HttpResponse, QueryDict
 from django.shortcuts import render
 from django.views.generic import TemplateView
+
+
+logger = logging.getLogger("AuthenticationsApp")
 
 
 class LoginRequiredMixin(object):
@@ -24,7 +31,7 @@ class ProfileTemplateView(LoginRequiredMixin, TemplateView):
     def get(self, request, *args, **kwargs):
         """ Root del template del perfil
         """
-        return render(request, 'autenticacion/profile.html')
+        return render(request, 'authentications/profile.html')
 
     def post(self, request, *args, **kwargs):
         """ Método para cambiar la contraseña del usuario
@@ -43,13 +50,15 @@ class ProfileTemplateView(LoginRequiredMixin, TemplateView):
             if new_password1 and new_password2 is not None:
                 user.set_password(new_password1)
                 user.save()
+                logger.info('Se cambió contraseña')
                 return HttpResponse(json.dumps('Contraseña cambiada exitosamente, por favor inicie sesión nuevamente.'),
                                     content_type='application/json')
             else:
+                logger.error('No pudo cambiar la contraseña')
                 return HttpResponse(json.dumps('No se pudo cambiar la contraseña.'),
                                     content_type='application/json')
         except Exception, e:
-            logging.error(e)
+            logger.error(e)
             return HttpResponse(e)
 
     def patch(self, request, *args, **kwargs):
@@ -69,10 +78,11 @@ class ProfileTemplateView(LoginRequiredMixin, TemplateView):
             user.first_name = first_name
             user.last_name = last_name
             user.save()
+            logger.info('Registro actualizado exitosamente.')
             return HttpResponse(json.dumps('Registro actualizado exitosamente.'),
                                 content_type='application/json')
         except Exception, e:
-            logging.error(e)
+            logger.error(e)
             return HttpResponse(e)
 
 
