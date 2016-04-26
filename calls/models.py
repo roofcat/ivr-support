@@ -2,7 +2,7 @@
 
 
 from __future__ import unicode_literals
-from datetime import datetime
+from datetime import datetime, timedelta
 import calendar
 import json
 import logging
@@ -16,6 +16,7 @@ from utils import timestamp_to_date
 
 
 logger = logging.getLogger("CallsApp")
+day_delta = timedelta(days=1)
 
 
 class Call(models.Model):
@@ -55,7 +56,7 @@ class Call(models.Model):
     @classmethod
     def get_dynamic_calls(self, date_from, date_to, display_start, display_length):
         date_from = timestamp_to_date(date_from)
-        date_to = timestamp_to_date(date_to)
+        date_to = timestamp_to_date(date_to) + day_delta
         params = dict()
         params['timestamp__range'] = (date_from, date_to)
 
@@ -87,7 +88,7 @@ class Call(models.Model):
     @classmethod
     def get_dynamic_calls_async(self, date_from, date_to):
         date_from = timestamp_to_date(date_from)
-        date_to = timestamp_to_date(date_to)
+        date_to = timestamp_to_date(date_to) + day_delta
         params = dict()
         params['timestamp__range'] = (date_from, date_to)
         
