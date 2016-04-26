@@ -30,7 +30,7 @@ function timestamp_to_date ( date ) {
     return moment.unix( date ).format( 'DD-MM-YYYY h:mm:ss a' );
 };
 
-function date_to_timestamp ( date ) {
+function date_to_timestamp ( date, max ) {
     return moment( date, 'DD/MM/YYYY' ).unix();
 };
 

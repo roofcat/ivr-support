@@ -45,7 +45,7 @@ $( '.datePicker' ).on( 'change', function () {
 	var date_to = $( '#date_to' ).val();
 
 	date_from = moment( date_from, 'DD/MM/YYYY' ).unix();
-	date_to = moment( date_to ).unix();
+	date_to = moment( date_to, 'DD/MM/YYYY' ).unix();
 
 	if ( date_from > date_to ) {
 		setDefaultDates();
@@ -71,13 +71,9 @@ $( '#run_search' ).on( 'click', function () {
 	var link = baseUrl + queryUrl + date_from + '/' + date_to + '/';
 
 	drawJTables( link );
-
 	$( '#closeLoadingModal' ).click();
 
 	exportLink = baseUrl + exportUrl + date_from + '/' + date_to + '/';
-
-	console.log( exportLink );
-
 	$( '#btnGenerateReport' ).show();
 
 });
