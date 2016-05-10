@@ -39,7 +39,7 @@ class CallDetailView(LoginRequiredMixin, TemplateView):
                 pk = int(pk, base=10)
                 call = get_object_or_404(Call, pk=pk)
                 call = model_to_dict(call)
-                call['session_file'] = '/media/' + call['session_file'].name
+                #call['session_file'] = '/media/' + call['session_file'].name
                 return JsonResponse(call)
         except Exception, e:
             logger.error(e)

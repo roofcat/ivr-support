@@ -20,48 +20,38 @@ time_delta = timedelta(hours=23.999999999)
 
 
 class Call(models.Model):
-    begin_call = models.DateTimeField(
-        null=True, blank=True, verbose_name='Inicio de llamada')
-    origin = models.BigIntegerField(
-        null=True, blank=True, verbose_name='Número que llama')
-    call_answered = models.BooleanField(
-        default=False, verbose_name='Contestó el IVR')
-    last_state = models.CharField(
-        max_length=255, blank=True, null=True, verbose_name='Opción seleccioanda del IVR')
-    ivr_sel = models.BigIntegerField(
-        null=True, blank=True, verbose_name='Tecla que presionó')
-    dial_intent_begin = models.DateTimeField(
-        null=True, blank=True, verbose_name='Hora de inicio de llamado de tranferencia')
-    dial_intent_caller = models.BigIntegerField(
-        null=True, blank=True, verbose_name='Número que llama')
-    dial_intent_called = models.BigIntegerField(
-        null=True, blank=True, verbose_name='Número a donde se transfiere la llamada')
-    dial_intent_end = models.DateTimeField(
-        null=True, blank=True, verbose_name='Término de la llamada de transferencia')
-    dial_intent_answered = models.BooleanField(
-        default=False, verbose_name='La transferencia fue contestada')
-    session_file = models.FileField(upload_to='audio/%Y/%m/%d{0}'.format(
-        calendar.timegm(datetime.utcnow().utctimetuple())),
-        null=True, verbose_name='Archivo de audio')
-    hc = models.CharField(max_length=150, null=True, blank=True,
-                          verbose_name='Código de término de la llamada')
-    end_dial = models.DateTimeField(
-        null=True, blank=True, verbose_name='Término de la llamada')
-    timestamp = models.DateTimeField(
-        null=True, blank=True, verbose_name='Fecha del registro')
+    collection = models.CharField(max_length=150, null=True)
+    sp = models.CharField(max_length=150, null=True)
+    key = models.BigIntegerField(null=True)
+    beginCall = models.DateTimeField(null=True)
+    origin = models.BigIntegerField(null=True)
+    callAnswered = models.BooleanField(default=False)
+    lastState = models.CharField(max_length=150, null=True)
+    IVRSel = models.BigIntegerField(null=True)
+    dialIntentBegin1 = models.DateTimeField(null=True)
+    dialIntentCaller1 = models.BigIntegerField(null=True)
+    dialIntentCalled1 = models.BigIntegerField(null=True)
+    dialIntentEnd1 = models.DateTimeField(null=True)
+    dialIntentAnswered1 = models.BooleanField(default=False)
+    sessionFile = models.CharField(max_length=255, null=True)
+    hc = models.CharField(max_length=150, null=True)
+    routing = models.CharField(max_length=255, null=True)
+    name = models.CharField(max_length=255, null=True)
+    endDial = models.DateTimeField(null=True)
+    timeStamp = models.DateTimeField(null=True)
 
     def __unicode__(self):
-        return "{0} - {1} - {2}".format(self.timestamp, self.origin, self.call_answered)
+        return "{0} - {1} - {2}".format(self.timeStamp, self.origin, self.callAnswered)
 
     @classmethod
     def get_dynamic_calls(self, date_from, date_to, display_start, display_length):
         date_from = timestamp_to_date(date_from)
         date_to = timestamp_to_date(date_to) + time_delta
         params = dict()
-        params['timestamp__range'] = (date_from, date_to)
+        params['timeStamp__range'] = (date_from, date_to)
 
         # ejecución de la query
-        calls = Call.objects.filter(**params).order_by('-timestamp')
+        calls = Call.objects.filter(**params).order_by('-timeStamp')
         logger.info(calls.query)
         query_total = calls.count()
         logger.info("Total query count: {0}".format(query_total))
@@ -91,10 +81,10 @@ class Call(models.Model):
         date_from = timestamp_to_date(date_from)
         date_to = timestamp_to_date(date_to) + time_delta
         params = dict()
-        params['timestamp__range'] = (date_from, date_to)
+        params['timeStamp__range'] = (date_from, date_to)
         
         # ejecucion de la query
-        data = Call.objects.filter(**params).order_by('-timestamp')
+        data = Call.objects.filter(**params).order_by('-timeStamp')
         logger.info(data.count())
 
         if data:

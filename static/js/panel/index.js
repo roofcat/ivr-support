@@ -70,7 +70,7 @@ $( '#run_search' ).on( 'click', function () {
 
 	var link = baseUrl + queryUrl + date_from + '/' + date_to + '/';
 
-	drawJTables( link );
+	drawJTables( link );	
 	$( '#closeLoadingModal' ).click();
 
 	exportLink = baseUrl + exportUrl + date_from + '/' + date_to + '/';
@@ -123,7 +123,7 @@ function drawJTables( urlSource ) {
 		"scrollY": "450px",
 		"searching": false,
 		"serverSide": true,
-		"columns": [				
+		"columns": [
 			{
 				'data': 'pk',
 				'title': 'Detalle',
@@ -138,96 +138,79 @@ function drawJTables( urlSource ) {
 				},
 			},
 			{
-				'data': 'session_file',
-				'title': 'Audio',
-				'render': function ( data, type, row, meta ) {
+		    	'data': 'timeStamp',
+		    	'title': 'Fecha',
+		    	'render': function ( data, type, row, meta ) {
+					return ( !data ) ? "" : moment( data ).format( 'DD-MM-YYYY H:mm:ss' );
+				},
+		    },
+		    {
+		    	'data': 'beginCall',
+		    	'title': 'Inicio llamada',
+		    },
+		    {
+		    	'data': 'origin',
+		    	'title': 'Nº que llama',
+		    },
+		    {
+		    	'data': 'callAnswered',
+		    	'title': 'Contestó IVR',
+		    	'render': function ( data, type, row, meta ) {
+					var html = '';
 					if ( data ) {
-						var html = '<div style="font-size:11px;">';
-						html += '<a href="/media/' + data + '" title="Ir al audio" target="_blank"><span class="glyphicon glyphicon-headphones"></span></a>';
-						html += '</div>';
-						return html;
+						html = '<div align="center"><span class="glyphicon glyphicon-ok"></span></div>';
 					} else {
-						return "";
+						html = '<div align="center"><span class="glyphicon glyphicon-remove"></span></div>';
 					};
+					return html;
 				},
-			},
-			{
-				'data': 'timestamp',
-				'title': 'Fecha',
-				'render': function ( data, type, row, meta ) {
+		    },
+		    {
+		    	'data': 'IVRSel',
+		    	'title': 'Nº Anexo',
+		    },
+		    {
+		    	'data': 'dialIntentBegin1',
+		    	'title': 'Fecha Inicio',
+		    	'render': function ( data, type, row, meta ) {
 					return ( !data ) ? "" : moment( data ).format( 'DD-MM-YYYY H:mm:ss' );
 				},
-			},
-			{
-				'data': 'begin_call',
-				'title': 'Inicio llamada',
-				'render': function ( data, type, row, meta ) {
+		    },
+		    {
+		    	'data': 'dialIntentCaller1',
+		    	'title': 'Nº que llama',
+		    },
+		    {
+		    	'data': 'dialIntentCalled1',
+		    	'title': 'Nº donde se transfiere',
+		    },
+		    {
+		    	'data': 'dialIntentEnd1',
+		    	'title': 'Fecha término',
+		    	'render': function ( data, type, row, meta ) {
 					return ( !data ) ? "" : moment( data ).format( 'DD-MM-YYYY H:mm:ss' );
 				},
-			},
-			{
-				'data': 'origin',
-				'title': 'Nº que llama',
-			},
-			{
-				'data': 'call_answered',
-				'title': 'Contestó IVR',
-				'render': function ( data, type, row, meta ) {
+		    },
+		    {
+		    	'data': 'dialIntentAnswered1',
+		    	'title': 'Transferencia contestada',
+		    	'render': function ( data, type, row, meta ) {
 					var html = '';
 					if ( data ) {
 						html = '<div align="center"><span class="glyphicon glyphicon-ok"></span></div>';
 					} else {
 						html = '<div align="center"><span class="glyphicon glyphicon-remove"></span></div>';
-					}
+					};
 					return html;
 				},
-			},
-			{
-				'data': 'ivr_sel',
-				'title': 'Nº Anexo',
-			},
-			{
-				'data': 'dial_intent_begin',
-				'title': 'Fecha inicio',
-				'render': function ( data, type, row, meta ) {
+		    },
+		    {
+		    	'data': 'endDial',
+		    	'title': 'Término llamada',
+		    	'render': function ( data, type, row, meta ) {
 					return ( !data ) ? "" : moment( data ).format( 'DD-MM-YYYY H:mm:ss' );
 				},
-			},
-			{
-				'data': 'dial_intent_caller',
-				'title': 'Nº que llama',
-			},
-			{
-				'data': 'dial_intent_called',
-				'title': 'Nº donde se transfiere',
-			},
-			{
-				'data': 'dial_intent_end',
-				'title': 'Fecha término',
-				'render': function ( data, type, row, meta ) {
-					return ( !data ) ? "" : moment( data ).format( 'DD-MM-YYYY H:mm:ss' );
-				},
-			},
-			{
-				'data': 'dial_intent_answered',
-				'title': 'Transferencia contestada',
-				'render': function ( data, type, row, meta ) {
-					var html = '';
-					if ( data ) {
-						html = '<div align="center"><span class="glyphicon glyphicon-ok"></span></div>';
-					} else {
-						html = '<div align="center"><span class="glyphicon glyphicon-remove"></span></div>';
-					}
-					return html;
-				},
-			},
-			{
-				'data': 'end_dial',
-				'title': 'Término de llamada',
-				'render': function ( data, type, row, meta ) {
-					return ( !data ) ? "" : moment( data ).format( 'DD-MM-YYYY H:mm:ss' );
-				},
-			},
+		    },
 		],
 		"language": {
 			"emptyTable": "No se encontraron registros.",
@@ -242,7 +225,7 @@ function drawJTables( urlSource ) {
             "processing": "Proceso en curso.",
             "search": "Buscar",
             "zeroRecords": "No se encontraron registros.",
-         },
+		},
 	});
 	table.removeClass( 'display' );
 	table.addClass( 'table table-hover table-striped table-condensed table-responsive' );
@@ -282,40 +265,31 @@ function drawCallDetailModal ( data ) {
 	var title = 'Detalle de llamada';
 	var html = '<div style="font-size: 12px;"><br>';
 
-	html += '<label>Fecha registro:</label> ' + date_to_format( data.timestamp ) + ' <br>';
-	html += '<label>Inicio de llamada:</label> ' + date_to_format( data.begin_call ) + ' <br>';
+	html += '<label>Fecha registro:</label> ' + date_to_format( data.timeStamp ) + ' <br>';
+	html += '<label>Inicio de llamada:</label> ' + date_to_format( data.beginCall ) + ' <br>';
 	html += '<label>Nº que llama:</label> ' + data.origin + ' - ';
-	html += '<label>Nº Anexo:</label> ' + data.ivr_sel + ' <br>';
+	html += '<label>Nº Anexo:</label> ' + data.IVRSel + ' <br>';
 	html += '<label>Llamada respondida:</label> ';
-	if ( data.call_answered === true ) {
+	if ( data.callAnswered === true ) {
 		html += '<span class="glyphicon glyphicon-ok"></span>';
 	} else {
 		html+= '<span class="glyphicon glyphicon-remove"></span>';
 	};
 	html += ' - ';
-	html += '<label>Último estado IVR:</label> ' + data.last_state + ' <br>';
-	html += '<label>Fecha de inicio de llamada de transferencia:</label> ' + date_to_format( data.dial_intent_begin ) + ' <br>';
-	html += '<label>Número que llama:</label> ' + data.dial_intent_caller + ' <br>';
-	html += '<label>Número a donde se transfiere la llamada:</label> ' + data.dial_intent_called + ' <br>';
-	html += '<label>Término de la llamada de transferencia:</label> ' + data.dial_intent_end + ' <br>';
+	html += '<label>Último estado IVR:</label> ' + data.lastState + ' <br>';
+	html += '<label>Fecha de inicio de llamada de transferencia:</label> ' + date_to_format( data.dialIntentBegin1 ) + ' <br>';
+	html += '<label>Número que llama:</label> ' + data.dialIntentCaller1 + ' <br>';
+	html += '<label>Número a donde se transfiere la llamada:</label> ' + data.dialIntentCalled1 + ' <br>';
+	html += '<label>Término de la llamada de transferencia:</label> ' + data.dialIntentEnd1 + ' <br>';
 	html += '<label>Transferencia contestada:</label> ';
-	if ( data.dial_intent_answered === true ) {
+	if ( data.dialIntentAnswered1 === true ) {
 		html += '<span class="glyphicon glyphicon-ok"></span>';
 	} else {
 		html+= '<span class="glyphicon glyphicon-remove"></span>';
 	};
 	html += ' <br>';
-	html += '<label>Archivo de audio:</label> ';
-	if ( data.session_file ) {
-		html += '<audio controls>';
-		html += '<source src="' + data.session_file + '">';
-		html += '</audio>';
-	} else {
-		html += 'Sin archivo de audio.';
-	};
-	html += ' <br>';
 	html += '<label>Código de término de llamada:</label> ' + data.hc + ' <br>';
-	html += '<label>Fecha término de llamada:</label> ' + date_to_format( data.end_dial ) + ' <br>';
+	html += '<label>Fecha término de llamada:</label> ' + date_to_format( data.endDial ) + ' <br>';
 	html += ' ';
 	html += '</div>';
 

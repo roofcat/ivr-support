@@ -18,7 +18,7 @@ BASE_DIR = Path(__file__).ancestor(2)
 SECRET_KEY = '*1yc(@+!!bcfqsy#zw(9csn13%o*+43=a1-hc4ynqvtk6_tx8o'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -27,7 +27,7 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
-    'django.contrib.auth',    
+    'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -76,7 +76,7 @@ ROOT_URLCONF = 'app.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR.child('templates'),],
+        'DIRS': [BASE_DIR.child('templates'), ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
