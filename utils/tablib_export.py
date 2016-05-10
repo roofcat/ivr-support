@@ -23,30 +23,30 @@ def create_tablib(data):
 
 	if data is not None:
 		for row in data:
-			timestamp = date_to_format(row.timestamp)
-			begin_call = date_to_format(row.begin_call)
+			timeStamp = date_to_format(row.timeStamp)
+			beginCall = date_to_format(row.beginCall)
 			origin = unicode(row.origin)
-			if row.call_answered:
-				call_answered = u'CONTESTADA'
+			if row.callAnswered:
+				callAnswered = u'CONTESTADA'
 			else:
-				call_answered = u'NO CONTESTADA'
-			last_state = unicode(row.last_state)
-			ivr_sel = unicode(row.ivr_sel)
-			dial_intent_begin = date_to_format(row.dial_intent_begin)
-			dial_intent_caller = unicode(row.dial_intent_caller)
-			dial_intent_called = unicode(row.dial_intent_called)
-			dial_intent_end = date_to_format(row.dial_intent_end)
-			if row.dial_intent_answered:
-				dial_intent_answered = u'CONTESTADA'
+				callAnswered = u'NO CONTESTADA'
+			lastState = unicode(row.lastState)
+			IVRSel = unicode(row.IVRSel)
+			dialIntentBegin1 = date_to_format(row.dialIntentBegin1)
+			dialIntentCaller1 = unicode(row.dialIntentCaller1)
+			dialIntentCalled1 = unicode(row.dialIntentCalled1)
+			dialIntentEnd1 = date_to_format(row.dialIntentEnd1)
+			if row.dialIntentAnswered1:
+				dialIntentAnswered1 = u'CONTESTADA'
 			else:
-				dial_intent_answered = u'NO CONTESTADA'
+				dialIntentAnswered1 = u'NO CONTESTADA'
 			hc = unicode(row.hc)
-			end_dial = date_to_format(row.end_dial)
+			endDial = date_to_format(row.endDial)
 
 			data_row = (
-				timestamp, begin_call, origin, call_answered, last_state, ivr_sel,
-				dial_intent_begin, dial_intent_caller, dial_intent_called, dial_intent_end,
-				dial_intent_answered, hc, end_dial
+				timeStamp, beginCall, origin, callAnswered, lastState, IVRSel,
+				dialIntentBegin1, dialIntentCaller1, dialIntentCalled1, dialIntentEnd1,
+				dialIntentAnswered1, hc, endDial
 			)
 			my_tab.append(data_row)
 		logger.info('Se generó el excel exitosamente')
