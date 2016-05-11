@@ -188,6 +188,11 @@ LOGGING = {
             'level': 'DEBUG',
             'propagate': True,
         },
+        'CallApiApp': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
         'TabLibExport': {
             'handlers': ['file'],
             'level': 'DEBUG',

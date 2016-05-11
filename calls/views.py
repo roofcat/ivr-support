@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 
 
+import logging
+
+
 from django.shortcuts import get_object_or_404
 
 
@@ -14,6 +17,9 @@ from .models import Call
 from .serializers import CallInputIVRSerializer
 
 
+logger = logging.getLogger("CallApiApp")
+
+
 class CallInputIVRView(APIView):
     serializer_class = CallInputIVRSerializer
     permission_classes = (permissions.AllowAny,)
@@ -22,8 +28,9 @@ class CallInputIVRView(APIView):
         call = self.serializer_class(data=request.data)
         if call.is_valid():
             call.save()
-            print call
+            logger.info('Se ha creado la llamada')
+            logger.info(call.data)
             return Response({'status': 200})
         else:
-            print call.errors
+            logger.error(call.errors)
             return Response(call.errors)
