@@ -4,16 +4,11 @@
 import logging
 
 
-from django.shortcuts import get_object_or_404
-
-
-from rest_framework import authentication, permissions
+from rest_framework import permissions
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework.viewsets import ModelViewSet
 
 
-from .models import Call
 from .serializers import CallInputIVRSerializer
 
 
