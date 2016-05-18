@@ -20,6 +20,8 @@ class CallInputIVRView(APIView):
     permission_classes = (permissions.AllowAny,)
 
     def post(self, request, format=None):
+        logger.info("Imprimiendo el request")
+        logger.info(request.data)
         call = self.serializer_class(data=request.data)
         if call.is_valid():
             call.save()
