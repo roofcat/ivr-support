@@ -13,6 +13,7 @@ from rest_framework.authtoken.views import obtain_auth_token
 
 from authentications.views import log_in, log_out, to_home, ProfileTemplateView
 from calls.views import CallInputIVRView
+from calls.views import CallInputTemplateView
 
 
 router = routers.DefaultRouter()
@@ -22,7 +23,7 @@ urlpatterns = [
     # rutas api rest
     url(r'^api/', include(router.urls)),
     url(r'^api-token/', obtain_auth_token),
-    url(r'^api/call-input/', CallInputIVRView.as_view()),
+    url(r'^api/call-input/', CallInputTemplateView.as_view()),
 
     url(r'^panel/', include('panel.urls', namespace='panel')),
     # autenticaciones
