@@ -105,8 +105,15 @@ class CallInputTemplateView(TemplateView):
             except:
                 dialIntentBegin1 = None
 
-            dialIntentCaller1 = request_body['dialIntentCaller1']
-            dialIntentCalled1 = request_body['dialIntentCalled1']
+            try:
+                dialIntentCaller1 = request_body['dialIntentCaller1']
+            except:
+                dialIntentCaller1 = None
+
+            try:
+                dialIntentCalled1 = request_body['dialIntentCalled1']
+            except:
+                dialIntentCalled1 = None
             
             dialIntentEnd1 = str(request_body['dialIntentEnd1']).decode('utf-8')
             dialIntentEnd1 = string_date_to_datetime(dialIntentEnd1)
