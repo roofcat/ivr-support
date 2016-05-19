@@ -26,7 +26,7 @@ class Call(models.Model):
     beginCall = models.DateTimeField()
     origin = models.BigIntegerField()
     callAnswered = models.BooleanField(default=False)
-    lastState = models.CharField(max_length=150)
+    lastState = models.CharField(max_length=150, null=True)
     IVRSel = models.BigIntegerField(null=True)
     dialIntentBegin1 = models.DateTimeField(null=True)
     dialIntentCaller1 = models.BigIntegerField()

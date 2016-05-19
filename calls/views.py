@@ -89,7 +89,10 @@ class CallInputTemplateView(TemplateView):
             else:
                 callAnswered = False
 
-            lastState = str(request_body['lastState']).decode('utf-8')
+            try:
+                lastState = str(request_body['lastState']).decode('utf-8')
+            except:
+                lastState = None
 
             try:
                 IVRSel = request_body['IVRSel']
