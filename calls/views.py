@@ -93,11 +93,14 @@ class CallInputTemplateView(TemplateView):
 
             try:
                 IVRSel = request_body['IVRSel']
-            except Exception, e:
+            except:
                 IVRSel = None
             
-            dialIntentBegin1 = str(request_body['dialIntentBegin1']).decode('utf-8')
-            dialIntentBegin1 = string_date_to_datetime(dialIntentBegin1)
+            try:
+                dialIntentBegin1 = str(request_body['dialIntentBegin1']).decode('utf-8')
+                dialIntentBegin1 = string_date_to_datetime(dialIntentBegin1)
+            except:
+                dialIntentBegin1 = None
 
             dialIntentCaller1 = request_body['dialIntentCaller1']
             dialIntentCalled1 = request_body['dialIntentCalled1']
