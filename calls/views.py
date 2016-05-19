@@ -67,7 +67,7 @@ class CallInputTemplateView(TemplateView):
             logger.info(request_body)
         except Exception, e:
             data = {
-                "mensaje": "error al procesar JSON \n" + e
+                "mensaje": "error al procesar JSON"
             }
             return HttpResponse(json.dumps(data), status=500)
 
