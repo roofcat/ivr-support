@@ -31,7 +31,7 @@ class Call(models.Model):
     dialIntentBegin1 = models.DateTimeField(null=True)
     dialIntentCaller1 = models.BigIntegerField(null=True)
     dialIntentCalled1 = models.BigIntegerField(null=True)
-    dialIntentEnd1 = models.DateTimeField()
+    dialIntentEnd1 = models.DateTimeField(null=True)
     dialIntentAnswered1 = models.BooleanField()
     sessionFile = models.CharField(max_length=255, null=True, blank=True)
     hc = models.CharField(max_length=150)
