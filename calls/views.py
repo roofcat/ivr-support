@@ -83,10 +83,13 @@ class CallInputTemplateView(TemplateView):
 
             origin = request_body['origin']
 
-            callAnswered = str(request_body['callAnswered']).decode('utf-8')
-            if callAnswered == 'true':
-                callAnswered = True
-            else:
+            try:
+                callAnswered = str(request_body['callAnswered']).decode('utf-8')
+                if callAnswered == 'true':
+                    callAnswered = True
+                else:
+                    callAnswered = False
+            except:
                 callAnswered = False
 
             try:
@@ -121,10 +124,13 @@ class CallInputTemplateView(TemplateView):
             except:
                 dialIntentEnd1 = None
 
-            dialIntentAnswered1 = str(request_body['dialIntentAnswered1']).decode('utf-8')
-            if dialIntentAnswered1 == 'true':
-                dialIntentAnswered1 = True
-            else:
+            try:
+                dialIntentAnswered1 = str(request_body['dialIntentAnswered1']).decode('utf-8')
+                if dialIntentAnswered1 == 'true':
+                    dialIntentAnswered1 = True
+                else:
+                    dialIntentAnswered1 = False
+            except:
                 dialIntentAnswered1 = False
 
             sessionFile = str(request_body['sessionFile']).decode('utf-8')
