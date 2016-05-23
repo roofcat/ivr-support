@@ -21,7 +21,7 @@ time_delta = timedelta(hours=23.999999999)
 
 class Call(models.Model):
     collection = models.CharField(max_length=150)
-    sp = models.CharField(max_length=150)
+    sp = models.CharField(max_length=150, null=True)
     key = models.BigIntegerField()
     beginCall = models.DateTimeField()
     origin = models.BigIntegerField()
@@ -34,7 +34,7 @@ class Call(models.Model):
     dialIntentEnd1 = models.DateTimeField(null=True)
     dialIntentAnswered1 = models.BooleanField()
     sessionFile = models.CharField(max_length=255, null=True, blank=True)
-    hc = models.CharField(max_length=150)
+    hc = models.CharField(max_length=150, null=True)
     routing = models.CharField(max_length=255, null=True, blank=True)
     name = models.CharField(max_length=255, null=True, blank=True)
     endDial = models.DateTimeField()

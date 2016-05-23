@@ -74,7 +74,10 @@ class CallInputTemplateView(TemplateView):
         try:
             collection = str(request_body['collection']).decode('utf-8')
             
-            sp = str(request_body['sp']).decode('utf-8')
+            try:
+                sp = str(request_body['sp']).decode('utf-8')
+            except:
+                sp = None
             
             key = request_body['key']
             
@@ -138,11 +141,20 @@ class CallInputTemplateView(TemplateView):
             except:
                 sessionFile = None
             
-            hc = str(request_body['hc']).decode('utf-8')
+            try:
+                hc = str(request_body['hc']).decode('utf-8')
+            except:
+                hc = None
             
-            routing = str(request_body['routing']).decode('utf-8')
+            try:
+                routing = str(request_body['routing']).decode('utf-8')
+            except Exception, e:
+                routing = None
             
-            name = str(request_body['name']).decode('utf-8')
+            try:
+                name = str(request_body['name']).decode('utf-8')
+            except:
+                name = None
             
             endDial = str(request_body['endDial']).decode('utf-8')
             endDial = string_date_to_datetime(endDial)
