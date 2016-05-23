@@ -271,19 +271,28 @@ function drawCallDetailModal ( data ) {
 	html += '<label>Fecha registro:</label> ' + date_to_format( data.timeStamp ) + ' <br>';
 	html += '<label>Inicio de llamada:</label> ' + date_to_format( data.beginCall ) + ' <br>';
 	html += '<label>Nº que llama:</label> ' + data.origin + ' - ';
-	html += '<label>Nº Anexo:</label> ' + data.IVRSel + ' <br>';
+	html += '<label>Nº Anexo:</label> ' + data.IVRSel || ' ' + ' <br>';
 	html += '<label>Llamada respondida:</label> ';
+	
 	if ( data.callAnswered === true ) {
 		html += '<span class="glyphicon glyphicon-ok"></span>';
 	} else {
 		html+= '<span class="glyphicon glyphicon-remove"></span>';
 	};
+
 	html += ' - ';
 	html += '<label>Último estado IVR:</label> ' + data.lastState + ' <br>';
-	html += '<label>Fecha de inicio de llamada de transferencia:</label> ' + date_to_format( data.dialIntentBegin1 ) + ' <br>';
-	html += '<label>Número que llama:</label> ' + data.dialIntentCaller1 + ' <br>';
-	html += '<label>Número a donde se transfiere la llamada:</label> ' + data.dialIntentCalled1 + ' <br>';
-	html += '<label>Término de la llamada de transferencia:</label> ' + data.dialIntentEnd1 + ' <br>';
+	html += '<label>Fecha de inicio de llamada de transferencia:</label> ';
+	
+	if ( data.dialIntentBegin1 ) {
+		html +=  date_to_format( data.dialIntentBegin1 ) + ' <br>';
+	} else {
+		html += ' <br>';
+	};
+
+	html += '<label>Número que llama:</label> ' + data.dialIntentCaller1 || ' ' + ' <br>';
+	html += '<label>Número a donde se transfiere la llamada:</label> ' + data.dialIntentCalled1 || ' ' + ' <br>';
+	html += '<label>Término de la llamada de transferencia:</label> ' + data.dialIntentEnd1 + ' ' + ' <br>';
 	html += '<label>Transferencia contestada:</label> ';
 	if ( data.dialIntentAnswered1 === true ) {
 		html += '<span class="glyphicon glyphicon-ok"></span>';
