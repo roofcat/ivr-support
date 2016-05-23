@@ -133,7 +133,10 @@ class CallInputTemplateView(TemplateView):
             except:
                 dialIntentAnswered1 = False
 
-            sessionFile = str(request_body['sessionFile']).decode('utf-8')
+            try:
+                sessionFile = str(request_body['sessionFile']).decode('utf-8')
+            except:
+                sessionFile = None
             
             hc = str(request_body['hc']).decode('utf-8')
             
