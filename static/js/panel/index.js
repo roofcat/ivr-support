@@ -147,6 +147,9 @@ function drawJTables( urlSource ) {
 		    {
 		    	'data': 'beginCall',
 		    	'title': 'Inicio llamada',
+		    	'render': function ( data, type, row, meta ) {
+					return ( !data ) ? "" : moment( data ).format( 'DD-MM-YYYY H:mm:ss' );
+				},
 		    },
 		    {
 		    	'data': 'origin',
