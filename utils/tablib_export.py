@@ -24,24 +24,51 @@ def create_tablib(data):
 	if data is not None:
 		for row in data:
 			timeStamp = date_to_format(row.timeStamp)
-			beginCall = date_to_format(row.beginCall)
+			if beginCall is not None:
+				beginCall = date_to_format(row.beginCall)
+			else:
+				beginCall = ''
 			origin = unicode(row.origin)
 			if row.callAnswered:
 				callAnswered = u'CONTESTADA'
 			else:
 				callAnswered = u'NO CONTESTADA'
-			lastState = unicode(row.lastState)
-			IVRSel = unicode(row.IVRSel)
-			dialIntentBegin1 = date_to_format(row.dialIntentBegin1)
-			dialIntentCaller1 = unicode(row.dialIntentCaller1)
-			dialIntentCalled1 = unicode(row.dialIntentCalled1)
-			dialIntentEnd1 = date_to_format(row.dialIntentEnd1)
+			if lastState is not None:
+				lastState = unicode(row.lastState)
+			else:
+				lastState = ''
+			if IVRSel is not None:
+				IVRSel = unicode(row.IVRSel)
+			else:
+				IVRSel = ''
+			if dialIntentBegin1 is not None:
+				dialIntentBegin1 = date_to_format(row.dialIntentBegin1)
+			else:
+				dialIntentBegin1 = ''
+			if dialIntentCaller1 is not None:
+				dialIntentCaller1 = unicode(row.dialIntentCaller1)
+			else:
+				dialIntentCaller1 = ''
+			if dialIntentCalled1 is not None:
+				dialIntentCalled1 = unicode(row.dialIntentCalled1)
+			else:
+				dialIntentCalled1 = ''
+			if dialIntentEnd1 is not None:
+				dialIntentEnd1 = date_to_format(row.dialIntentEnd1)
+			else:
+				dialIntentEnd1 = ''
 			if row.dialIntentAnswered1:
 				dialIntentAnswered1 = u'CONTESTADA'
 			else:
 				dialIntentAnswered1 = u'NO CONTESTADA'
-			hc = unicode(row.hc)
-			endDial = date_to_format(row.endDial)
+			if hc is not None:
+				hc = unicode(row.hc)
+			else:
+				hc = ''
+			if endDial is not None:
+				endDial = date_to_format(row.endDial)
+			else:
+				endDial = ''
 
 			data_row = (
 				timeStamp, beginCall, origin, callAnswered, lastState, IVRSel,
