@@ -84,7 +84,11 @@ class CallInputTemplateView(TemplateView):
             beginCall = str(request_body['beginCall']).decode('utf-8')
             beginCall = string_date_to_datetime(beginCall)
 
-            origin = request_body['origin']
+            try:
+                origin = request_body['origin']
+                origin = int(origin, base=10)
+            except:
+                origin = 0
 
             try:
                 callAnswered = str(request_body['callAnswered']).decode('utf-8')
@@ -117,11 +121,13 @@ class CallInputTemplateView(TemplateView):
 
             try:
                 dialIntentCaller1 = request_body['dialIntentCaller1']
+                dialIntentCaller1 = int(dialIntentCaller1, base=10)
             except:
                 dialIntentCaller1 = None
 
             try:
                 dialIntentCalled1 = request_body['dialIntentCalled1']
+                dialIntentCalled1 = int(dialIntentCalled1, base=10)
             except:
                 dialIntentCalled1 = None
             
