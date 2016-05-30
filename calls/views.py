@@ -102,6 +102,10 @@ class CallInputTemplateView(TemplateView):
 
             try:
                 IVRSel = request_body['IVRSel']
+                if len(IVRSel) > 0:
+                    IVRSel = int(IVRSel, base=10)
+                else:
+                    IVRSel = None
             except:
                 IVRSel = None
             
@@ -159,8 +163,11 @@ class CallInputTemplateView(TemplateView):
             endDial = str(request_body['endDial']).decode('utf-8')
             endDial = string_date_to_datetime(endDial)
 
-            timeStamp = str(request_body['timeStamp']).decode('utf-8')
-            timeStamp = string_date_to_datetime(timeStamp)
+            try:
+                timeStamp = str(request_body['timeStamp']).decode('utf-8')
+                timeStamp = string_date_to_datetime(timeStamp)
+            except Exception, e:
+                raise e
 
             # proceso de guardado
             new_call = Call.objects.create(

@@ -36,16 +36,13 @@ def string_date_to_datetime(x):
         return datetime.strptime(x.strip(), '%a %b %d %Y %H:%M:%S')
     except Exception, e:
         print e
-        pass
 
     try:
         return datetime.strptime(x.strip(), '%Y-%m-%dT%H:%M:%S.%fZ')
     except Exception, e:
         print e
-        pass
 
     try:
         return datetime.strptime(x.strip(), '%Y-%m-%dT%H:%M:%S.%f')
     except Exception, e:
         print e
-        pass
