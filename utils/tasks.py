@@ -4,7 +4,7 @@
 import logging
 
 
-from celery import Celery
+from app import celery_app
 
 
 from calls.models import Call
@@ -17,7 +17,7 @@ logger = logging.getLogger('CeleryTasks')
 app = Celery('reportes', backend='amqp', broker='amqp://')
 
 
-@app.task
+@celery_app.task
 def send_report_by_sendgrid(user, date_from, date_to):
     logger.info('Entrando a send_report_by_sendgrid')
 

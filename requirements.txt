@@ -4,6 +4,7 @@ billiard==3.5.0.2
 celery==4.0.0
 Django==1.9.11
 djangorestframework==3.3.3
+gunicorn==19.6.0
 kombu==4.0.0
 newrelic==2.74.0.54
 psycopg2==2.6.2
