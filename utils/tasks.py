@@ -14,7 +14,6 @@ from utils import timestamp_to_date
 
 
 logger = logging.getLogger('CeleryTasks')
-app = Celery('reportes', backend='amqp', broker='amqp://')
 
 
 @celery_app.task
